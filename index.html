@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Texas Hold'em Odds Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <p class="eyebrow">Texas Hold'em</p>
+        <h1>Poker Odds Calculator</h1>
+        <p class="subtitle">
+          Pick your hole cards and board cards to estimate hand strength, win rate,
+          tie rate, and loss rate against random opponents.
+        </p>
+      </section>
+
+      <section class="layout">
+        <div class="panel input-panel">
+          <div class="panel-header">
+            <h2>Table Setup</h2>
+            <button id="reset-button" class="ghost-button" type="button">Reset</button>
+          </div>
+
+          <div class="control-row">
+            <label for="opponent-count">Opponents</label>
+            <select id="opponent-count">
+              <option value="1">1 opponent</option>
+              <option value="2">2 opponents</option>
+              <option value="3">3 opponents</option>
+              <option value="4">4 opponents</option>
+              <option value="5">5 opponents</option>
+            </select>
+          </div>
+
+          <div class="card-group">
+            <div class="group-header">
+              <h3>Your Hole Cards</h3>
+              <span>Required</span>
+            </div>
+            <div class="card-grid two-col">
+              <div class="card-slot" data-slot="hero-1"></div>
+              <div class="card-slot" data-slot="hero-2"></div>
+            </div>
+          </div>
+
+          <div class="card-group">
+            <div class="group-header">
+              <h3>Flop</h3>
+              <span>Optional</span>
+            </div>
+            <div class="card-grid three-col">
+              <div class="card-slot" data-slot="flop-1"></div>
+              <div class="card-slot" data-slot="flop-2"></div>
+              <div class="card-slot" data-slot="flop-3"></div>
+            </div>
+          </div>
+
+          <div class="card-group">
+            <div class="group-header">
+              <h3>Turn</h3>
+              <span>Optional</span>
+            </div>
+            <div class="card-grid one-col">
+              <div class="card-slot" data-slot="turn"></div>
+            </div>
+          </div>
+
+          <div class="card-group">
+            <div class="group-header">
+              <h3>River</h3>
+              <span>Optional</span>
+            </div>
+            <div class="card-grid one-col">
+              <div class="card-slot" data-slot="river"></div>
+            </div>
+          </div>
+
+          <p id="validation-message" class="validation-message" aria-live="polite"></p>
+        </div>
+
+        <div class="panel results-panel">
+          <h2>Results</h2>
+
+          <div class="stats-grid">
+            <article class="stat-card emphasis">
+              <p class="stat-label">Current Hand</p>
+              <p id="hand-strength" class="stat-value">Select cards to begin</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">Win</p>
+              <p id="win-rate" class="stat-value">--</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">Tie</p>
+              <p id="tie-rate" class="stat-value">--</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">Loss</p>
+              <p id="loss-rate" class="stat-value">--</p>
+            </article>
+          </div>
+
+          <div class="result-section">
+            <h3>Best Current Five-Card Hand</h3>
+            <div id="best-hand-cards" class="best-hand-strip empty">
+              Complete at least five cards to evaluate the full hand.
+            </div>
+          </div>
+
+          <div class="result-section">
+            <h3>Simulation Notes</h3>
+            <p id="simulation-meta" class="supporting-text">
+              Add your two hole cards to start the odds calculation.
+            </p>
+          </div>
+
+          <div class="result-section">
+            <h3>How the probability works</h3>
+            <p class="supporting-text">
+              The calculator removes your known cards from the deck, randomly deals
+              the unseen board and opponent cards many times, evaluates the best
+              five-card poker hand for every player, and records how often you win,
+              tie, or lose.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="poker.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
